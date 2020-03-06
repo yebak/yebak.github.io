@@ -1,6 +1,6 @@
-title: Your awesome title
-author: GitHub User
-email: your-email@domain.com
+title: yebak blog
+author: yebak
+email: yebak0419@gmail.com
 description: > # this means to ignore newlines until "show_exerpts:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
@@ -12,9 +12,9 @@ show_excerpts: true # set to true to show excerpts on the homepage
 sass:
   sass_dir: _sass
 plainwhite:
-  name: 박예언
-  tagline: 서비스 기획자
-  date_format: "%Y %b %-d "
+  name: YEBAK
+  tagline: Product Manager
+  date_format: "%b %-d, %Y "
   sitemap: true # set to true to generate sitemap.xml content
 
   # generate social links in footer
@@ -43,6 +43,12 @@ plainwhite:
     # - username: jekyll2
     #   instance: example.com
     disqus_shortname: yebak
+    
+    navigation:
+    - title: My Work
+      url: "/my-work"
+    - title: Resume
+      url: "/resume"
 # If you want to link only specific pages in your header, uncomment
 # this and add the path to the pages in order as they should show up
 #header_pages:
@@ -56,3 +62,5 @@ plugins:
 #  - jekyll-feed
 
 remote_theme: thelehhman/plainwhite-jekyll
+
+
