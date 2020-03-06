@@ -1,68 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    {%- include head.html -%}
-  </head>
-  <body>
-    <main class="container">
-      <section class="about">
-        <a href="/"><img src="{{ "/assets/portfolio.png" | relative_url }}" alt="{{ site.plainwhite.name }}"></a>
-        <h2 id="title">
-          <a href="/">{{ site.plainwhite.name }}</a>
-        </h2>
-        <p class="tagline">{{ site.plainwhite.tagline }}</p>
-        <ul class="social">
-          {%- if site.plainwhite.social_links.github -%}
-            <a href="https://github.com/{{ site.plainwhite.social_links.github }}">
-              <li>
-                <i class="icon-github-circled"></i>
-              </li>
-            </a>
-          {%- endif -%}
-          {%- if site.plainwhite.social_links.linkedIn -%}
-            <a href="https://www.linkedin.com/{{ site.plainwhite.social_links.linkedIn }}">
-              <li>
-                <i class="icon-linkedin-squared"></i>
-              </li>
-            </a>
-          {%- endif -%}
-          {%- if site.plainwhite.social_links.twitter -%}
-            <a href="https://twitter.com/{{ site.plainwhite.social_links.twitter }}">
-              <li>
-                <i class="icon-twitter-squared"></i>
-              </li>
-            </a>
-          {%- endif -%}
-        </ul>
+---
+layout: compress
+---
+<html lang="{{ page.lang | default: site.lang | default: "en_US" }}">
 
-        {%- if site.plainwhite.navigation -%}
-          <nav class="navigation">
-            <ul>
-              {% for link in site.plainwhite.navigation %}
-                <li>
-                  <a href="{{ link.url }}">{{ link.title }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          </nav>
-        {%- endif -%}
+  {% include head.html %}
 
-        <p>&copy;
-          {{ "now" | date: "%Y" }}</p>
-      </section>
-      <section class="content">
-        {{ content }}
+  <body class="site">
+
+    {% if site.google_tag_manager %}
+
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.google_tag_manager }}"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+
+    {% endif %}
+
+    {% include header.html %}
+
+    <div class="hero lazyload" data-bg="{{site.url}}/assets/img/posts/sleek_lg.jpg">
+      <div class="hero__wrap">
+        <h1 class="hero__title">Sleek</h1>
+        <p class="hero__meta">Modern Jekyll theme focused on speed performance & SEO best practices</p>
+      </div>
+    </div>
+
+    <main class="site__content">
+      <section class="blog">
+        <div class="container">
+          <div class="post-list" itemscope="" itemtype="http://schema.org/Blog">
+
+            {% for post in site.posts %}
+              {% include card.html %}
+            {% endfor %}
+
+            <!-- {% include pagination.html %} -->
+          </div>
+        </div>
       </section>
     </main>
-    {%- if site.plainwhite.analytics_id -%}
-      <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.plainwhite.analytics_id }}"></script>
-      <script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
 
-		gtag('config', '{{ site.plainwhite.analytics_id }}');
-	</script>
-    {%- endif -%}
+    {% include footer.html %}
+
   </body>
+
 </html>
