@@ -1,130 +1,217 @@
-[![Gem Version](https://badge.fury.io/rb/jekyll-sleek.svg)](https://badge.fury.io/rb/jekyll-sleek) [![Build Status](https://travis-ci.org/janczizikow/sleek.svg?branch=master)](https://travis-ci.org/janczizikow/sleek) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/janczizikow/sleek)
-# Sleek
+# Type: Minimal and Clean Free Jekyll Theme
 
-A modern [Jekyll](https://jekyllrb.com/) theme focused on speed performance & SEO best practices.
+<img alt="Type: Minimal and Clean Free Jekyll Theme" src="https://user-images.githubusercontent.com/626005/63093493-c3daa880-bf65-11e9-860e-da88047cce24.png">
 
-## Features
+- [Configurations](#configurations)
+- [Deployment](#deployment)
+- [Posts](#posts)
+- [Pages](#pages)
+- [Navigation](#navigation)
+- [Disqus Comments](#disqus-comments)
+- [Google Analytics](#google-analytics)
+- [Social Media Links](#social-media-links)
+- [Update favicon](#update-favicon)
 
-* Compatible with [Github Pages](https://pages.github.com/)
-* Minimal, responsive and speed performance optimized
-* SEO friendly, with help of [Jekyll SEO Plugin](https://github.com/jekyll/jekyll-seo-tag)
-* Easy [Google Tag Manager](https://tagmanager.google.com/) Integration
-* Support for [Disqus](https://disqus.com/) comments
-* Form submissions with [Formspree](https://formspree.io/)
+### Configurations
 
-[Preview Demo](https://janczizikow.github.io/sleek/)
+Type theme comes with different customizations in the `_config.yml` file:
 
-## Installation
+```sh
+title:       Type
+email:       ''
+description: ''
+baseurl:     '' # The subpath of your site, e.g. /blog
+url:         '' # The base hostname & protocol for your site
+twitter:     ''
+github:      ''
+instagram:   ''
+facebook:    ''
 
-### System Requirements
+markdown:  kramdown
+permalink: pretty
+paginate:  60
 
-To use this project, you'll need the following things on your local machine:
+sass:
+  style: compressed
 
-#### Jekyll
+gems:
+  - jekyll-paginate
+  - jekyll/tagging
 
-```shell
-gem install jekyll
+include:
+  - _pages
+
+exclude:
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+
+# Tags
+tag_page_dir:         tag
+tag_page_layout:      tag_page
+tag_permalink_style:  pretty
+
+# Pages path
+defaults:
+  - scope:
+      path: '_pages'
+    values:
+      permalink: /:basename:output_ext
 ```
 
-#### NodeJS
+### Deployment
 
-Download and open the [NodeJS installer](https://nodejs.org/en/)
+To run the theme locally, navigate to the theme directory and run `bundle install` to install the dependencies, then run `jekyll serve` to start the Jekyll server.
 
-#### Gulp.js (optional, but recommended)
+I would recommend checking the [Deployment Methods](https://jekyllrb.com/docs/deployment-methods/) page on Jekyll website.
 
-```shell
-sudo npm install -g gulpfile
+### Posts
+
+To create a new post, you can create a new markdown file inside the `_posts` directory by following the [recommended file structure](https://jekyllrb.com/docs/posts/#creating-post-files).
+
+The following is a post file with different configurations you can add as an example:
+
+```sh
+---
+layout: post
+title: Welcome to Jekyll!
+featured: true
+tags: [frontpage, jekyll, blog]
+image: '/images/welcome.jpg'
+---
 ```
 
-### Up & Running
+You can set the author, featured or not, tags, and the post image.
 
-1. [Fork the repo](https://github.com/janczizikow/sleek/fork)
-2. Clone or download the repo into directory of your choice: `git clone https://github.com/your-github-username/sleek.git`
-3. Inside the directory run `bundle install` and `npm install`
-4. If you want to use [gulp.js](https://gulpjs.com/) run `gulp` or `npm start`
-  * if you don't want to use gulp you can simply run `bundle exec jekyll serve`
+The `featured` key is to mark the post as a featured post, this will add a simple star icon (*) to the postcard.
 
-#### Installing to existing jekyll project
+To keep things more organized, add post images to **/images/pages** directory, and add page images to **/images/pages** directory.
 
-Add this line to your Jekyll site's `Gemfile`:
+To create a draft post, create the post file under the **_drafts** directory, and you can find more information at [Working with Drafts](http://jekyllrb.com/docs/drafts/).
 
-```ruby
-gem "jekyll-sleek"
+For tags, try to not add space between two words, for example, `Ruby on Rails`, could be something like (`ruby-on-rails`, `Ruby_on_Rails`, or `Ruby-on-Rails`).
+
+Note that tags are not working with GitHub Pages, that's because the used [jekyll-tagging
+](https://github.com/pattex/jekyll-tagging) plugin is not [whitelisted](https://pages.github.com/versions/) by GitHub.
+
+To make this work, I use [Netlify.com](https://www.netlify.com/) for deployment.
+
+### Pages
+
+To create a new page, just create a new markdown file inside the `_pages` directory.
+
+The following is the `about.md` file that you can find as an example included in the theme with the configurations you can set.
+
+```sh
+---
+layout: page
+title: About
+image: '/images/pages/about.jpeg'
+---
 ```
 
-And add this line to your Jekyll site's `_config.yml`:
+Things you can change are: `title` and `image` path.
 
-```yaml
-theme: jekyll-sleek
+
+### Navigation
+
+The navigation on the sidebar will automatically include all the links to the pages you have created.
+
+### Disqus Comments
+
+Open `_includes/disqus.html` file, and change the `aspirethemes-demos` value on line `12` with your [Disqus account shortname](https://help.disqus.com/customer/portal/articles/466208).
+
+```js
+s.src = '//aspirethemes-demo.disqus.com/embed.js';
 ```
 
-And then execute:
+So, if your Disqus shortname is `exampleone`, the final code above should be
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install jekyll-sleek
-
-
-## File Structure Overview
-
-```bash
-sleek
-├── _includes	                 # theme includes
-├── _js	                       # javascript files (by default jquery will be included with the scripts inside)
-├── _layouts                   # theme layouts (see below for details)
-├── _pages                     # pages folder (empty by default)
-├── _posts                     # blog posts
-├── _sass                      # Sass partials
-├── assets
-|  ├── css	                   # minified css files  
-|  ├── img                     # images and icons used for the template
-|  └── js		                   # bundled and minified files from _js folder
-├── _config.yml                # sample configuration
-├── gulpfile.js                # gulp tasks (tasks autorunner)
-├── index.md                   # sample home page (blog page)
-└── package.json               # gulp tasks
+```js
+s.src = '//exampleone.disqus.com/embed.js';
 ```
 
-## Usage
+That's all you need to setup Disqus from the theme side. If you get any issue regarding that comments are unable to load. First, make sure you have [registered your website with Disqus (Step 1)](https://help.disqus.com/customer/portal/articles/466182-publisher-quick-start-guide)
 
-TODO
+And also check [Disqus troubleshooting guide](https://help.disqus.com/customer/portal/articles/472007-i-m-receiving-the-message-%22we-were-unable-to-load-disqus-%22) if you still have issues.
 
-### Site configuration
+### Google Analytics
 
-TODO
+To integrate Google Analytics, open `_includes/analytics.html`, and add your Google Analytics code.
 
-### Google Tag Manager
+### Social Media Links
 
-TODO
+Social media links included in `_includes/footer.html` file.
 
-### Disqus
+The theme is using [Evil Icons](http://evil-icons.io/), which contains very simple and clean icons. The following is a list of the social media icons to use:
 
-To enable Disqus comments, add your [Disqus shortname](https://help.disqus.com/customer/portal/articles/466208) to `_config.yml`:
+Twitter
 
-```yaml
-disqus:
-  shortname: my_disqus_shortname
+```html
+<span data-icon='ei-sc-twitter' data-size='s'></span>
 ```
-### Formspree
+
+Facebook
+
+```html
+<span data-icon='ei-sc-facebook' data-size='s'></span>
+```
+
+Instagram
+
+```html
+<span data-icon='ei-sc-instagram' data-size='s'></span>
+```
+
+Pinterest
+
+```html
+<span data-icon='ei-sc-pinterest' data-size='s'></span>
+```
+
+Vimeo
+
+```html
+<span data-icon='ei-sc-vimeo' data-size='s'></span>
+```
+
+Google Plus
+
+```html
+<span data-icon='ei-sc-google-plus' data-size='s'></span>
+```
+
+SoundCloud
+
+```html
+<span data-icon='ei-sc-soundcloud' data-size='s'></span>
+```
+
+Tumblr
+
+```html
+<span data-icon='ei-sc-tumblr' data-size='s'></span>
+```
+
+Youtube
+
+```html
+<span data-icon='ei-sc-youtube' data-size='s'></span>
+```
+
+### Update favicon
+
+You can find the current favicon (favicon.ico) inside the theme root directory, just replace it with your new favicon.
 
 
-TODO: Write usage instructions here. Describe your available layouts, includes, sass and/or assets.
+### Aspire Themes
 
-## Contributing
+👉 Visit [**aspirethemes.com**](http://bit.ly/type-jekyll-github-link) for more Jekyll, Ghost, and WordPress themes.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/janczizikow/sleek. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+<img alt="Aspire Themes" src="https://user-images.githubusercontent.com/626005/63092640-afe17780-bf62-11e9-9ea9-546489bb282c.png">
 
-## Development
+---
 
-To set up your environment to develop this theme, run `bundle install`.
-
-Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
-
-When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
-To add a custom directory to your theme-gem, please edit the regexp in `jekyll-sleek.gemspec` accordingly.
-
-## License
-
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8G8PKPEADPD42&source=url">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif">
+</a>

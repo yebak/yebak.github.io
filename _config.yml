@@ -1,57 +1,48 @@
-title: Blog YEBAK # your site title
-author: yebak
-email: yebak0419@gmail.com # email for form submission, you also have to change it in _js/scripts.js
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://yebak.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-#twitter_username: jan_czizikow # replace with your_twitter_username or comment to remove link from footer
-#github_username:  janczizikow # replace with your_github_username or comment to remove link from footer
-#instagram_username: shanlongjj # replace with your_instagram_username or comment to remove link from footer
-social:
-  name: Your Name
-  links:
-#    - https://twitter.com/BenBalter
-#    - https://www.facebook.com/ben.balter
-#    - https://www.linkedin.com/in/BenBalter
-#    - https://plus.google.com/+BenBalter
-#    - https://github.com/benbalter
-#    - https://keybase.io/benbalter
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
 
-disqus:
-  shortname: yebak # to enable comments replace with your_disqus_shortname
+# Site settings
+title:       yebak
+email:       ''
+description: ''
+baseurl:     '' # The subpath of your site, e.g. /blog
+url:         'https://type-jekyll.aspirethemes.com/' # The base hostname & protocol for your site
+twitter:     ''
+github:      ''
+instagram:   ''
+facebook:    ''
 
-# Build settings
-markdown: kramdown
-highlighter: rouge # or pygments or null
-theme: jekyll-sleek
-exclude:
-  - README.md
-  - node_modules
-  - package.json
-  - package-lock.json
-  - Gemfile
-  - Gemfile.lock
-  - vendor
-  - npm-debug.log
-  - gulpfile.js
-  - sleek.png
+markdown:  kramdown
+permalink: pretty
+paginate:  10
 
-include: ['_pages']
-permalink: /:title/
-
-compress_html:
-  clippings: all
+sass:
+  style: compressed
 
 plugins:
-  - jekyll-sitemap
-  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll/tagging
 
+include:
+  - _pages
 
-# THEME SETTINGS
-navigation: # Navigation links
-  - {name: 'Home', link: '/'}
-  - {name: 'About', link: '/about'}
-  - {name: 'Contact', link: '/contact'}
+exclude:
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+
+# Tags
+tag_page_dir:         tag
+tag_page_layout:      tag_page
+tag_permalink_style:  pretty
+
+# Pages path
+defaults:
+  - scope:
+      path: '_pages'
+    values:
+      permalink: /:basename:output_ext
