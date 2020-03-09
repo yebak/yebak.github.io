@@ -18,7 +18,7 @@ facebook:    ''
 
 markdown:  kramdown
 permalink: pretty
-paginate:  10
+paginate:  20
 
 sass:
   style: compressed
@@ -29,7 +29,6 @@ plugins:
 
 include:
   - _pages
-  - _pages2
 
 exclude:
   - vendor
